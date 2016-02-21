@@ -1,4 +1,4 @@
-package Calcul;
+package Utils;
 
 import java.awt.Component;
 import java.awt.Container;

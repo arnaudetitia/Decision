@@ -2,6 +2,7 @@ package Calcul;
 
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -14,7 +15,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 
-public class FlashAddition extends Panel {
+import Utils.MiniJeu;
+
+public class FlashAddition extends MiniJeu {
 	
 	Frame fenetre;
 	Label nombre;
@@ -22,6 +25,7 @@ public class FlashAddition extends Panel {
 	int sum;
 	
 	public FlashAddition(Frame fen){
+		super("Calcul","Flash Addition","Donner la somme des chiffres qui vont apparaitre");
 		fenetre = fen;
 		fen.addKeyListener(new KeyAdapter(){
 			@Override
@@ -61,6 +65,10 @@ public class FlashAddition extends Panel {
 			e.printStackTrace();
 		}
 	}	
+	
+	public void paint(Graphics g){
+		
+	}
 	
 	private class ResultFieldListener implements ActionListener{
 		

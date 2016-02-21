@@ -1,6 +1,7 @@
 package Calcul;
 
 import java.awt.Button;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
@@ -10,7 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class BonneHeure extends Panel {
+import Utils.EnigmeHoraire;
+import Utils.MiniJeu;
+import Utils.ReponseHeure;
+
+public class BonneHeure extends MiniJeu {
 	
 	Vector<EnigmeHoraire> enigmes;
 	Vector<ReponseHeure> reponses;
@@ -18,6 +23,7 @@ public class BonneHeure extends Panel {
 	Button validButton;
 
 	public BonneHeure() {
+		super("Calcul","A la bonne heure","Calculer 3 heures en 30 secondes");
 		enigmes = new Vector<>();
 		reponses = new Vector<>();
 		setLayout(new GridLayout(4,1));
@@ -33,6 +39,7 @@ public class BonneHeure extends Panel {
 		validButton= new Button("Valider");
 		validButton.addActionListener(new HeureButtonListener());
 		add(validButton);
+		
 	}
 	
 	public void verify(){
@@ -46,6 +53,11 @@ public class BonneHeure extends Panel {
 		}
 		System.out.println("Gagné");
 	}
+	
+	public void paint(Graphics g){
+			
+		}
+	
 	
 	class HeureButtonListener implements ActionListener{
 

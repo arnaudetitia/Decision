@@ -2,6 +2,7 @@ package Calcul;
 
 import java.awt.Button;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Panel;
@@ -10,11 +11,16 @@ import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.Vector;
 
-public class Intrus extends Panel {
+import Utils.MiniJeu;
+import Utils.Operation;
+import Utils.OperationButton;
+
+public class Intrus extends MiniJeu {
 	
 	int soloresult ;
 
 	public Intrus() {
+		super("Calcul","L'intrus","Parmis ces 9 opérations quelle est la seule à ne pas avoir son double");
 		setLayout(new GridLayout(3,3));
 		Font font = new Font(Font.DIALOG,Font.PLAIN,40);
 		
@@ -54,6 +60,10 @@ public class Intrus extends Panel {
 			b.addActionListener(new OperationButtonListener(b.getOperation()));
 			add(b);
 		}
+	}
+	
+	public void paint(Graphics g){
+		
 	}
 	
 	private class OperationButtonListener implements ActionListener{

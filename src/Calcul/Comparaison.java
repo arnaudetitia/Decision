@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.LayoutManager;
@@ -13,7 +14,10 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Comparaison extends Panel {
+import Utils.MiniJeu;
+import Utils.Operation;
+
+public class Comparaison extends MiniJeu {
 	
 	Operation op1;
 	Label op1Label;
@@ -26,8 +30,8 @@ public class Comparaison extends Panel {
 	Button falseButton;
 	boolean goodAnswer;
 
-	public Comparaison(Frame fen) {
-		fenetre = fen;
+	public Comparaison() {
+		super("Calcul","Les Comparaisons","Dire si ces comparaisons sont vraies ou fausses en 30 secondes.");
 		setLayout(new GridLayout(2,3));
 		Font font = new Font(Font.DIALOG,Font.PLAIN,50);
 		op1Label = new Label();
@@ -80,6 +84,10 @@ public class Comparaison extends Panel {
 
 	private String isCroiss() {
 		return croiss ? "<" : ">";
+	}
+	
+	public void paint(Graphics g){
+		
 	}
 	
 	class MyButtonListener implements ActionListener{

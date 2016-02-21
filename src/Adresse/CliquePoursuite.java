@@ -8,7 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class CliquePoursuite extends Panel{
+import Utils.MiniJeu;
+
+public class CliquePoursuite extends MiniJeu{
 	
 	Frame fenetre;
 	float squareX;
@@ -16,6 +18,7 @@ public class CliquePoursuite extends Panel{
 	int cpt = 0;
 
 	public CliquePoursuite(Frame fen) {
+		super("Adresse","Clique Poursuite", "Cliquer sur 10 cibles en 20 secondes");
 		fenetre = fen;
 		squareX = (float)(Math.random()*90);
 		squareY = (float)(Math.random()*90);
@@ -47,11 +50,6 @@ public class CliquePoursuite extends Panel{
 		
 		g.setColor(Color.RED);
 		g.fillRect((int)(w*squareX/100),(int)(h*squareY/100) ,w/10, w/10);
-	}
-
-	public CliquePoursuite(LayoutManager arg0) {
-		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 
 }

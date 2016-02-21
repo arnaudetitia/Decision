@@ -16,8 +16,7 @@ import Calcul.BonneHeure;
 import Calcul.Comparaison;
 import Calcul.FlashAddition;
 import Calcul.Intrus;
-
-
+import Memoire.Fugitif;
 
 public class Main {
 	
@@ -32,8 +31,9 @@ public class Main {
 		Frame fen = new Frame();
 		fen.setSize(500,500);
 		fen.addWindowListener(adapter);
-		BonneHeure  pan = new BonneHeure();
-		fen.add(pan);
+		Fugitif fu = new Fugitif(fen);
+		//Jauge j = new Jauge(fen);
+		fen.add(fu);
 		fen.setVisible(true);	
 	}
 }

@@ -10,26 +10,25 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Jauge extends Panel{
+import Utils.MiniJeu;
+
+public class Jauge extends MiniJeu{
 
 	Frame fenetre;
 	float hauteur;
 	int state;
 	
 	public Jauge(Frame fen) {
+		super("Adresse","La Jauge","Remplir La jauge pour qu'elle soit entre les deux traits rouges");
 		fenetre = fen;
 		hauteur = 0;
 		state = 0;
 		addKeyListener(new JaugeAdapter());
-	}
-
-	public Jauge(LayoutManager layout) {
-		super(layout);
+		repaint();
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
 		int w = fenetre.getWidth();
 		int h = fenetre.getHeight();
 		g.drawLine(w/3, 0, w/3, h);
@@ -42,8 +41,8 @@ public class Jauge extends Panel{
 		}
 		g.fillRect(w/3+1, (int)(h-(h*hauteur/100)), w/3-1 , (int)(h*hauteur/100));
 		g.setColor(Color.RED);
-		g.drawLine(w/3,h*9/100 ,2*(w/3) ,h*9/100 );
-		g.drawLine(w/3,h*11/100 ,2*(w/3) ,h*11/100 );
+		g.drawLine(w/3,h*5/100 ,2*(w/3) ,h*5/100 );
+		g.drawLine(w/3,h*15/100 ,2*(w/3) ,h*15/100 );
 	}
 	
 	
@@ -71,7 +70,7 @@ public class Jauge extends Panel{
 			});
 			t.start();
 			if (state == 2){
-				if (hauteur >= 89 && hauteur <= 91 ){
+				if (hauteur >= 85 && hauteur <= 95 ){
 					System.out.println("Gagné");
 				}
 				else {
