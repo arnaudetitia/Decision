@@ -13,7 +13,8 @@ import Utils.MiniJeu;
 public class Fugitif extends MiniJeu {
 	
 	Frame fenetre;
-	int maille;
+	int mailleX;
+	int mailleY;
 	int state; 
 	Vector<Point> cases;
 	Point removed;
@@ -21,7 +22,8 @@ public class Fugitif extends MiniJeu {
 	public Fugitif(Frame fen) {
 		super("Mémoire","Le Fugitif", "Quelle case n'est plus rouge ?");
 		fenetre = fen;
-		maille = fenetre.getWidth()/10;
+		mailleX = 8*fenetre.getWidth()/100;
+		mailleY = 8*fenetre.getHeight()/100;
 		cases = new Vector<>();
 		generateCases();
 		state = 0;
@@ -29,23 +31,29 @@ public class Fugitif extends MiniJeu {
 	}
 
 	public void paint(Graphics g){
+		mailleX = 8*fenetre.getWidth()/100;
+		mailleY = 8*fenetre.getHeight()/100;
+		int w = fenetre.getWidth();
+		int h = fenetre.getHeight();
+		int deltaX = 10*w/100; 
+		int deltaY = 10*h/100; 
 		g.setColor(Color.BLACK);
 		for (int i = 0;i < 11;i++){
-			g.drawLine(i*maille, 0,i*maille , fenetre.getHeight());
-			g.drawLine(0, i*maille,fenetre.getWidth() , i*maille);
+			g.drawLine(deltaX + i*mailleX, deltaY,deltaX +i*mailleX , fenetre.getHeight()-deltaY);
+			g.drawLine(deltaX, deltaY+i*mailleY,fenetre.getWidth()-deltaX ,deltaY+i*mailleY);
 		}
 		switch(state){
 			case 1: case 3 :
 				g.setColor(Color.RED);
 				for (Point c : cases){
-					g.fillRect((int)c.getX()*maille+1, (int)c.getY()*maille+1, maille-1, maille-1);
+					g.fillRect(deltaX+(int)c.getX()*mailleX+1, deltaY+(int)c.getY()*mailleY+1, mailleX-1, mailleY-1);
 				}
 				break;
 			case 2:
 				g.setColor(Color.BLUE);
-				for (int i = 0;i < 11;i++){
-					for (int j = 0;j < 11;j++){
-						g.fillRect(i*maille+1, j*maille+1, maille-1, maille-1);
+				for (int i = 0;i < 10;i++){
+					for (int j = 0;j < 10;j++){
+						g.fillRect(deltaX+i*mailleX+1, deltaY+j*mailleY+1, mailleX-1, mailleY-1);
 					}
 				}
 				break;
@@ -69,6 +77,7 @@ public class Fugitif extends MiniJeu {
 	
 	
 	private class FugitifAdapter extends MouseAdapter{
+		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			state++;
@@ -92,7 +101,11 @@ public class Fugitif extends MiniJeu {
 				}).start();
 			}
 			if (state >= 3){
-				Point response = new Point(e.getX()/maille,e.getY()/maille);
+				int w = fenetre.getWidth();
+				int h = fenetre.getHeight();
+				int deltaX = 10*w/100; 
+				int deltaY = 10*h/100;
+				Point response = new Point((e.getX()-deltaX)/mailleX,(e.getY()-deltaY)/mailleY);
 				System.out.println(response.equals(removed) ? "Gagné" : "Perdu");
 			}
 		}
