@@ -16,7 +16,9 @@ import Calcul.BonneHeure;
 import Calcul.Comparaison;
 import Calcul.FlashAddition;
 import Calcul.Intrus;
+import Memoire.Combinaison;
 import Memoire.Fugitif;
+import Utils.MiniJeu;
 
 public class Main {
 	
@@ -31,9 +33,8 @@ public class Main {
 		Frame fen = new Frame();
 		fen.setSize(500,500);
 		fen.addWindowListener(adapter);
-		Fugitif fu = new Fugitif(fen);
-		//Jauge j = new Jauge(fen);
-		fen.add(fu);
+		MiniJeu jeu = new Combinaison(fen); 
+		fen.add(jeu);
 		fen.setVisible(true);	
 	}
 }
