@@ -17,27 +17,23 @@ import Utils.OperationButton;
 
 public class Intrus extends MiniJeu {
 	
+	int inPlay;
 	int soloresult ;
 
-	public Intrus() {
+	public Intrus(String s) {
 		super("Calcul","L'intrus","Parmis ces 9 opérations quelle est la seule à ne pas avoir son double");
 		setLayout(new GridLayout(3,3));
 		Font font = new Font(Font.DIALOG,Font.PLAIN,40);
 		
+		String[] result = s.split("#");
 		Vector<Operation> operations = new Vector<>();
-		for (int i = 0;i< 5;i++){
-			operations.add(new Operation());
+		for (int i = 0;i< 4;i++){
+			operations.add(new Operation(Integer.parseInt(result[i])));
+			operations.add(new Operation(Integer.parseInt(result[i])));
 		}
-		int solo = (int)(Math.random()*5);
-		for (int i = 0;i<5;i++){
-			int res = operations.get(i).getResult();
-			if (i != solo){
-				operations.add(new Operation(res));
-			}
-			else{
-				soloresult = res;
-			}
-		}
+		soloresult= Integer.parseInt(result[4]);
+		operations.add(new Operation(soloresult));
+		inPlay = Integer.parseInt(result[5]);
 		
 		int [] order = new int[9];
 		for (int i = 0;i<9;i++){
@@ -58,6 +54,7 @@ public class Intrus extends MiniJeu {
 			OperationButton b = new OperationButton(operations.get(order[i]));
 			b.setFont(font);
 			b.addActionListener(new OperationButtonListener(b.getOperation()));
+			if (inPlay == 0) b.setEnabled(false);
 			add(b);
 		}
 	}
@@ -77,6 +74,7 @@ public class Intrus extends MiniJeu {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.out.println(soloresult == operation.getResult() ? "Gagné" : "Perdu");
+			//System.out.println(operation.getResult());
 		}
 	}
 }

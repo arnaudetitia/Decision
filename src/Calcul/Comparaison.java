@@ -30,7 +30,7 @@ public class Comparaison extends MiniJeu {
 	Button falseButton;
 	boolean goodAnswer;
 
-	public Comparaison() {
+	public Comparaison(String s) {
 		super("Calcul","Les Comparaisons","Dire si ces comparaisons sont vraies ou fausses en 30 secondes.");
 		setLayout(new GridLayout(2,3));
 		Font font = new Font(Font.DIALOG,Font.PLAIN,50);
@@ -48,7 +48,7 @@ public class Comparaison extends MiniJeu {
 		op2Label.setFont(font);
 		op2Label.setAlignment(Label.CENTER);
 		
-		makeAComparaison();
+		makeAComparaison(s);
 		
 		trueButton = new Button("Vrai");
 		trueButton.setBackground(Color.GREEN);
@@ -68,14 +68,15 @@ public class Comparaison extends MiniJeu {
 		add(falseButton);
 	}
 	
-	private void makeAComparaison(){
-		op1 = new Operation();
+	private void makeAComparaison(String s){
+		String[] opS = s.split("#"); 
+		op1 = new Operation(Integer.parseInt(opS[0]));
 		op1Label.setText(op1.toString());
 		
-		croiss = ((int)(Math.random()*2) == 1);
+		croiss = Integer.parseInt(opS[1]) == 1;
 		compLabel.setText(isCroiss());
 		
-		op2 = new Operation();
+		op2 = new Operation(Integer.parseInt(opS[2]));
 		op2Label.setText(op2.toString());
 		
 		goodAnswer = croiss ? op1.getResult() < op2.getResult() : 
@@ -101,7 +102,7 @@ public class Comparaison extends MiniJeu {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(goodAnswer == reponse ? "Gagné" : "Perdu");
-			makeAComparaison();	
+			makeAComparaison("37#0#63");	
 		}
 		
 	}

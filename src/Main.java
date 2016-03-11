@@ -33,7 +33,8 @@ public class Main {
 		Frame fen = new Frame();
 		fen.setSize(500,500);
 		fen.addWindowListener(adapter);
-		MiniJeu jeu = new Combinaison(fen); 
+		String s = "9#1#51";
+		MiniJeu jeu = new Comparaison(s); 
 		fen.add(jeu);
 		fen.setVisible(true);	
 	}

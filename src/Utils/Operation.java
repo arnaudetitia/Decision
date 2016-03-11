@@ -23,6 +23,45 @@ public class Operation {
 		generateOperation();
 	}
 	
+	public Operation(String s){
+		int isAdd = s.indexOf("+");
+		int isSub = s.indexOf("-");
+		int isMul = s.indexOf("*");
+		int isDiv = s.indexOf("/");
+		if (isAdd!= -1){
+			 terme1 = Integer.parseInt(s.substring(0,isAdd));
+			 terme2 = Integer.parseInt(s.substring(isAdd+1,s.length()));
+			 result = terme1+terme2;
+			 type = 1;
+			 return;
+		}
+		if (isSub!= -1){
+			 terme1 = Integer.parseInt(s.substring(0,isSub));
+			 terme2 = Integer.parseInt(s.substring(isSub+1,s.length()));
+			 result = terme1-terme2;
+			 type = 2;
+			 return;
+		}
+		if (isMul!= -1){
+			 terme1 = Integer.parseInt(s.substring(0,isMul));
+			 terme2 = Integer.parseInt(s.substring(isMul+1,s.length()));
+			 result = terme1*terme2;
+			 type = 3;
+			 return;
+		}
+		if (isDiv!= -1){
+			 terme1 = Integer.parseInt(s.substring(0,isDiv));
+			 terme2 = Integer.parseInt(s.substring(isDiv+1,s.length()));
+			 result = terme1/terme2;
+			 type = 4;
+			 return;
+		}
+		else {
+			terme1 = Integer.parseInt(s);
+			result = terme1;
+		}
+	}
+	
 	private void generateOperation(){
 		switch(type){
 		case 1 :
