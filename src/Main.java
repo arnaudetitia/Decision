@@ -4,12 +4,16 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Panel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 
+import Adresse.Chemin;
 import Adresse.CliquePoursuite;
 import Adresse.Jauge;
 import Calcul.BonneHeure;
@@ -26,6 +30,7 @@ public class Main {
 		public void windowClosing(WindowEvent e) {
 			System.exit(0);
 		};
+		
 	};
 	
 	
@@ -33,8 +38,7 @@ public class Main {
 		Frame fen = new Frame();
 		fen.setSize(500,500);
 		fen.addWindowListener(adapter);
-		String s = "9#1#51";
-		MiniJeu jeu = new Comparaison(s); 
+		MiniJeu jeu = new Chemin(fen); 
 		fen.add(jeu);
 		fen.setVisible(true);	
 	}

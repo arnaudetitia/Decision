@@ -3,6 +3,8 @@ package Utils;
 
 import java.awt.Graphics;
 import java.awt.Panel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 abstract public class MiniJeu extends Panel {
 	String genre;
@@ -16,5 +18,6 @@ abstract public class MiniJeu extends Panel {
 	}
 	
 	abstract public void paint(Graphics g) ; 
+	
 		
 }
