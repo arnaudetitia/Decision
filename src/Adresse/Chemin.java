@@ -16,7 +16,7 @@ public class Chemin extends MiniJeu {
 	Frame fenetre;
 	int posX;
 	int posY;
-	int radius;
+	float radius;
 	boolean moveDot = false;
 	int [][] laby;
 
@@ -44,11 +44,11 @@ public class Chemin extends MiniJeu {
 		int mailleY = h/5;
 		for (int i = 0;i<5;i++){
 			for (int j=0;j<5;j++){
-				drawCase(g, laby[j][i],i*mailleX, j*mailleY, mailleX, mailleY);
+				drawCase(g, laby[j][i],i*mailleX, j*mailleY, mailleX+1, mailleY+1);
 			}
 		}
 		g.setColor(Color.BLUE);
-		g.fillOval(posX*w/100, posY*h/100,radius*w/100,radius*w/100);
+		g.fillOval(posX*w/100, posY*h/100,(int)(radius*w/100),(int)(radius*w/100));
 		
 	}
 	
@@ -104,7 +104,7 @@ public class Chemin extends MiniJeu {
 			break;
 		case 10 :
 			g.fillRect(x, y, w, (int)(0.35*h));
-			g.fillRect(x, y+(int)(0.65*h), w, (int)(0.35*h)+1);
+			g.fillRect(x, y+(int)(0.65*h), w, (int)(0.35*h));
 			break;
 		}
 	}
@@ -121,8 +121,8 @@ public class Chemin extends MiniJeu {
 			if (click.distance(center) <= radius){
 				System.out.println("<<OK>>");
 				moveDot = true;
-				posX = clickX-radius/2;
-				posY = clickY-radius/2;
+				posX = clickX-(int)radius/2;
+				posY = clickY-(int)radius/2;
 				repaint();
 			}
 		}
@@ -133,10 +133,10 @@ public class Chemin extends MiniJeu {
 			int h = getSize().height;
 			int clickX = 100*e.getX()/w;
 			int clickY = 100*e.getY()/h;
-			posX= clickX-radius/2;
-			posY = clickY-radius/2;
+			posX = clickX-(int)radius/2;
+			posY = clickY-(int)radius/2;
 			repaint();
-			checkContact(clickX%20,clickY%20,posX/20,posY/20);
+			checkContact(clickX,clickY,posX/20,posY/20);
 		}
 
 		private void checkContact(int clickX,int clickY,int i, int j) {
@@ -149,6 +149,9 @@ public class Chemin extends MiniJeu {
 			int type = laby[j][i];
 			switch(type){
 			case 0:
+				if((Math.abs((clickY%20)-10) > 5-radius/2) || (((clickX%20) < 5+radius/2) && clickX != 20)  ){
+					System.out.println("Perdu 0");
+				}
 				break;
 			case 1:
 				break;
@@ -157,13 +160,13 @@ public class Chemin extends MiniJeu {
 			case 3:
 				break;
 			case 4:
-				if(Math.abs(clickY-10) > 5){
-					System.out.println("Perdu");
+				if(Math.abs((clickY%20)-10) > 5-radius/2){
+					System.out.println("Perdu 4");
 				}
 				break;
 			case 5:
-				if(Math.abs(clickX-10) > 5){
-					System.out.println("Perdu");
+				if(Math.abs((clickX%20)-10) > 5-radius/2){
+					System.out.println("Perdu 5");
 				}
 				break;
 			case 6:
@@ -175,6 +178,9 @@ public class Chemin extends MiniJeu {
 			case 9:
 				break;
 			case 10:
+				if(Math.abs((float)(clickY%20)-10 ) > 3.5-radius/2){
+					System.out.println("Perdu 10");
+				}
 				break;
 			}
 			

@@ -19,6 +19,7 @@ public class CliquePoursuite extends MiniJeu{
 
 	public CliquePoursuite(Frame fen) {
 		super("Adresse","Clique Poursuite", "Cliquer sur 10 cibles en 20 secondes");
+		setSize(getMaximumSize());
 		fenetre = fen;
 		squareX = (float)(Math.random()*90);
 		squareY = (float)(Math.random()*90);
@@ -27,15 +28,16 @@ public class CliquePoursuite extends MiniJeu{
 			public void mouseClicked(MouseEvent e) {
 				float clickX= e.getX();
 				float clickY= e.getY();
-				float w = fenetre.getWidth();
-				float h = fenetre.getHeight();
+				float w = getSize().width;
+				float h = getSize().height;
 				float tauX = 100*clickX/w;
 				float tauY = 100*clickY/h;
-				float marge = fenetre.getWidth()/10;
+				float marge = 10;
 				if (tauX-squareX >= 0
 					&& tauX-squareX <= marge
 					&& tauY-squareY >= 0
 					&& tauY-squareY <= marge){
+					System.out.println("<<OK>>" + cpt++);
 					squareX = (float)(Math.random()*90);
 					squareY = (float)(Math.random()*90);
 					repaint();
@@ -45,11 +47,11 @@ public class CliquePoursuite extends MiniJeu{
 	}
 	
 	public void paint(Graphics g){
-		int w = fenetre.getWidth();
-		int h = fenetre.getHeight();
+		float w = getSize().width;
+		float h = getSize().height;
 		
 		g.setColor(Color.RED);
-		g.fillRect((int)(w*squareX/100),(int)(h*squareY/100) ,w/10, w/10);
+		g.fillRect((int)(w*squareX/100),(int)(h*squareY/100) ,(int)(w/10), (int)(w/10));
 	}
 
 }
