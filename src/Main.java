@@ -22,6 +22,8 @@ import Calcul.FlashAddition;
 import Calcul.Intrus;
 import Memoire.Combinaison;
 import Memoire.Fugitif;
+import Memoire.Sequence;
+import Memoire.Memory;
 import Utils.MiniJeu;
 
 public class Main {
@@ -38,8 +40,13 @@ public class Main {
 		Frame fen = new Frame();
 		fen.setSize(500,500);
 		fen.addWindowListener(adapter);
-		MiniJeu jeu = new Chemin(fen); 
+		String s = new String();
+		/*for (int i =0;i<5;i++){
+			s += String.valueOf((int)(Math.random()*200)) + "#";
+		}*/
+		MiniJeu jeu = new Sequence(); 
 		fen.add(jeu);
-		fen.setVisible(true);	
+		fen.setVisible(true);
+		fen.toFront();
 	}
 }

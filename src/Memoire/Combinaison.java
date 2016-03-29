@@ -10,7 +10,6 @@ import Utils.MiniJeu;
 
 public class Combinaison extends MiniJeu {
 
-	Frame fenetre;
 	int av;
 	
 	private static final Color[] colorTab =
@@ -18,9 +17,8 @@ public class Combinaison extends MiniJeu {
 	
 	private static int[] order = {0,1,2,3,4,5};
 	private static int[] orderToClick = {0,1,2,3,4,5};
-	public Combinaison(Frame fen) {
+	public Combinaison() {
 		super("Memoire", "Combinaison", "Clique sur les cases dans l'ordre");
-		fenetre = fen;
 		av = 0;
 		for (int i = 0;i<=30;i++ ){
 			int a = (int)(Math.random()*6);
@@ -40,13 +38,13 @@ public class Combinaison extends MiniJeu {
 
 	@Override
 	public void paint(Graphics g) {
-		float debX = (float) (fenetre.getWidth() * 0.2);
-		float debY = (float) (fenetre.getHeight() * 0.1);
-		float debX2 = (float) (fenetre.getWidth() * 0.05);
-		float debY2 = (float) (fenetre.getHeight() * 0.6);
-		float mailleX = (float) (fenetre.getWidth() * 0.2);
-		float mailleY = (float) (fenetre.getHeight()* 0.2);
-		float ajout = (float) (fenetre.getWidth()* 0.05);
+		float debX = (float) (getSize().width * 0.2);
+		float debY = (float) (getSize().height * 0.1);
+		float debX2 = (float) (getSize().width * 0.05);
+		float debY2 = (float) (getSize().height * 0.6);
+		float mailleX = (float) (getSize().width* 0.2);
+		float mailleY = (float) (getSize().height* 0.2);
+		float ajout = (float) (getSize().width* 0.05);
 		for (int i=0;i<2;i++){
 			for (int j=0;j<3;j++){
 				g.drawRect((int)(debX+j*mailleX), (int)(debY+i*mailleY), (int)mailleX,(int) mailleY);
@@ -68,8 +66,8 @@ public class Combinaison extends MiniJeu {
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			float tauX = (float)((float)e.getX()/(float)fenetre.getWidth());
-			float tauY = (float)((float)e.getY()/(float)fenetre.getHeight());
+			float tauX = (float)((float)e.getX()/(float)getSize().width);
+			float tauY = (float)((float)e.getY()/(float)getSize().height);
 			int c = (int)((tauX-0.2)/0.2);
 			int l = (int)((tauY-0.1)/0.2);
 			if (c <3 && l <2){

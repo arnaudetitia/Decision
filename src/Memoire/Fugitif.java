@@ -19,16 +19,14 @@ public class Fugitif extends MiniJeu {
 	Vector<Point> cases;
 	Point removed;
 
-	public Fugitif(Frame fen) {
+	public Fugitif() {
 		super("Mémoire","Le Fugitif", "Quelle case n'est plus rouge ?");
-		fenetre = fen;
-		mailleX = 8*fenetre.getWidth()/100;
-		mailleY = 8*fenetre.getHeight()/100;
+		mailleX = (int) (10*getSize().getWidth()/100);
+		mailleY = (int) (10*getSize().getHeight()/100);
 		cases = new Vector<>();
 		generateCases();
 		state = 0;
 		addMouseListener(new FugitifAdapter());
-		setSize(getMaximumSize());
 	}
 
 	public void paint(Graphics g){
@@ -81,6 +79,7 @@ public class Fugitif extends MiniJeu {
 		public void mousePressed(MouseEvent e) {
 			state++;
 			if (state==1){
+				removeMouseListener(getMouseListeners()[0]);
 				new Thread(new Runnable(){
 					@Override
 					public void run() {
@@ -93,6 +92,7 @@ public class Fugitif extends MiniJeu {
 							removed = cases.remove((int)(Math.random()*cases.size()));
 							state++;
 							repaint();
+							addMouseListener(new FugitifAdapter());
 						} catch (InterruptedException e) {
 							System.out.println(e);
 						}

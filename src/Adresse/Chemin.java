@@ -20,18 +20,16 @@ public class Chemin extends MiniJeu {
 	boolean moveDot = false;
 	int [][] laby;
 
-	public Chemin(Frame f) {
+	public Chemin() {
 		super("Adresse","Le Chemin","Déplacez le point bleu sans toucher les parrois");
-		fenetre = f;
 		posX=10;
 		posY=10;
 		radius = 3;
 		addMouseListener(cheminMouseListener);
 		addMouseMotionListener((MouseMotionListener) cheminMouseListener);
-		setSize(getMaximumSize());
 		laby = new int[][]{{0,4,4,4,6},
 						   {9,4,10,4,7},
-						   {8,4,4,4,6},
+						   {8,10,4,10,6},
 						   {9,4,10,4,7},
 						   {8,4,4,4,2}};
 	}
@@ -46,6 +44,9 @@ public class Chemin extends MiniJeu {
 			for (int j=0;j<5;j++){
 				drawCase(g, laby[j][i],i*mailleX, j*mailleY, mailleX+1, mailleY+1);
 			}
+		}
+		for (int i = 0;i<20;i++){
+			g.drawRect(0,0,w-i,h-i);
 		}
 		g.setColor(Color.BLUE);
 		g.fillOval(posX*w/100, posY*h/100,(int)(radius*w/100),(int)(radius*w/100));
@@ -135,8 +136,8 @@ public class Chemin extends MiniJeu {
 			int clickY = 100*e.getY()/h;
 			posX = clickX-(int)radius/2;
 			posY = clickY-(int)radius/2;
-			repaint();
 			checkContact(clickX,clickY,posX/20,posY/20);
+			repaint();
 		}
 
 		private void checkContact(int clickX,int clickY,int i, int j) {
@@ -147,38 +148,60 @@ public class Chemin extends MiniJeu {
 			int x = i*mailleX;
 			int y = j*mailleY;
 			int type = laby[j][i];
+			System.out.println(clickX + " " + clickY);
 			switch(type){
 			case 0:
-				if((Math.abs((clickY%20)-10) > 5-radius/2) || (((clickX%20) < 5+radius/2) && clickX != 20)  ){
+				if((Math.abs((clickY%20)-10) > 5-radius) || (((clickX%20) < 5+radius) && clickX != 20)  ){
 					System.out.println("Perdu 0");
 				}
 				break;
 			case 1:
+				if((Math.abs((clickX%20)-10) > 5-radius) || (((clickY%20) < 5+radius) && clickY != 20)  ){
+					System.out.println("Perdu 1");
+				}
 				break;
 			case 2:
+				if((Math.abs((clickY%20)-10) > 5-radius) || (((clickX%20) > 15-radius) && clickX != 0)  ){
+					System.out.println("Perdu 2");
+				}
 				break;
 			case 3:
+				if((Math.abs((clickY%20)-10) > 5-radius) || (((clickX%20) > 5+radius/2) && clickX != 0)  ){
+					System.out.println("Perdu 3");
+				}
 				break;
 			case 4:
-				if(Math.abs((clickY%20)-10) > 5-radius/2){
+				if(Math.abs((clickY%20)-10) > 5-radius){
 					System.out.println("Perdu 4");
 				}
 				break;
 			case 5:
-				if(Math.abs((clickX%20)-10) > 5-radius/2){
+				if(Math.abs((clickX%20)-10) > 5-radius){
 					System.out.println("Perdu 5");
 				}
 				break;
 			case 6:
+				if (((clickX%20) >  15-radius) || (((clickY%21) <  5+radius))){
+					System.out.println("Perdu 6");
+				}
 				break;
 			case 7:
+				if (((clickX%20)>  15-radius) || ((clickY%20)-10 >  5-radius)){
+					System.out.println("Perdu 7");
+				}
 				break;
 			case 8:
+				if ((((clickX%20) <  5+radius) && (clickX%21 != 20))  || ((clickY%20)-10 >  5-radius)) {
+					System.out.println("Perdu 8 ");
+				}
 				break;
 			case 9:
+				if ((((clickX%20) <  5+radius) && (clickX%21 != 20))|| ((clickY%21) <  5+radius)){
+					System.out.println("Perdu 9");
+				}
 				break;
 			case 10:
-				if(Math.abs((float)(clickY%20)-10 ) > 3.5-radius/2){
+				if(Math.abs((float)(clickY%20)-10 ) > 3.5-radius){
 					System.out.println("Perdu 10");
 				}
 				break;

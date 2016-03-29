@@ -8,6 +8,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JProgressBar;
+
 import Utils.MiniJeu;
 
 public class CliquePoursuite extends MiniJeu{
@@ -17,10 +19,8 @@ public class CliquePoursuite extends MiniJeu{
 	float squareY;
 	int cpt = 0;
 
-	public CliquePoursuite(Frame fen) {
+	public CliquePoursuite() {
 		super("Adresse","Clique Poursuite", "Cliquer sur 10 cibles en 20 secondes");
-		setSize(getMaximumSize());
-		fenetre = fen;
 		squareX = (float)(Math.random()*90);
 		squareY = (float)(Math.random()*90);
 		addMouseListener(new MouseAdapter() {

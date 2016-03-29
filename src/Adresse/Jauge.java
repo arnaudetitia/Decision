@@ -18,9 +18,8 @@ public class Jauge extends MiniJeu{
 	float hauteur;
 	int state;
 	
-	public Jauge(Frame fen) {
+	public Jauge() {
 		super("Adresse","La Jauge","Remplir La jauge pour qu'elle soit entre les deux traits rouges");
-		fenetre = fen;
 		hauteur = 0;
 		state = 0;
 		addKeyListener(new JaugeAdapter());
@@ -29,8 +28,8 @@ public class Jauge extends MiniJeu{
 
 	@Override
 	public void paint(Graphics g) {
-		int w = fenetre.getWidth();
-		int h = fenetre.getHeight();
+		int w = getSize().width;
+		int h = getSize().height;
 		g.drawLine(w/3, 0, w/3, h);
 		g.drawLine(2*(w/3), 0, 2*(w/3), h);
 		if (hauteur > 50 && state == 1){

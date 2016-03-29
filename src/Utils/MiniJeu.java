@@ -6,6 +6,9 @@ import java.awt.Panel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import javax.swing.JProgressBar;
+import javax.swing.ProgressMonitor;
+
 abstract public class MiniJeu extends Panel {
 	String genre;
 	String nom;
@@ -15,6 +18,7 @@ abstract public class MiniJeu extends Panel {
 		genre = g;
 		nom = n;
 		regles = r;
+		setSize(getMaximumSize());
 	}
 	
 	abstract public void paint(Graphics g) ; 
