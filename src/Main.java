@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import Adresse.Chemin;
 import Adresse.CliquePoursuite;
 import Adresse.Jauge;
+import Adresse.Passage;
 import Calcul.BonneHeure;
 import Calcul.Comparaison;
 import Calcul.FlashAddition;
@@ -44,7 +45,7 @@ public class Main {
 		/*for (int i =0;i<5;i++){
 			s += String.valueOf((int)(Math.random()*200)) + "#";
 		}*/
-		MiniJeu jeu = new Sequence(); 
+		MiniJeu jeu = new Passage(); 
 		fen.add(jeu);
 		fen.setVisible(true);
 		fen.toFront();
