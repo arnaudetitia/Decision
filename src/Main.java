@@ -45,7 +45,7 @@ public class Main {
 		/*for (int i =0;i<5;i++){
 			s += String.valueOf((int)(Math.random()*200)) + "#";
 		}*/
-		MiniJeu jeu = new Passage(); 
+		MiniJeu jeu = new Question("Thème"); 
 		fen.add(jeu);
 		fen.setVisible(true);
 		fen.toFront();
